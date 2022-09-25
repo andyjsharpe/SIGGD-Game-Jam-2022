@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4195491475304541814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4195491475304541816}
+  - component: {fileID: 4195491475304541817}
+  m_Layer: 0
+  m_Name: Generator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4195491475304541816
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4195491475304541814}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4195491475304541817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4195491475304541814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2199c8a65883d24bbb2c76a656c3f6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shipPrefabs:
+  - {fileID: 8111725776553652667, guid: 1665e05e10ad1c54080a130c634d0fc6, type: 3}
+  - {fileID: 2115069908458169604, guid: a21da2ff597105641ae2181059ccab2c, type: 3}
+  - {fileID: 7033163981128852827, guid: ae0a93eb241d8ab4495a94da46d63a55, type: 3}
+  - {fileID: 88322192482881023, guid: 0b206b285f2508446965ff514ad8f31e, type: 3}
+  metals:
+  - {fileID: 2100000, guid: 20057d8f2c6fa194791fb88808e72338, type: 2}
+  - {fileID: 2100000, guid: 3a104bfa8c84d974eb8554acdf9a5e7f, type: 2}
+  - {fileID: 2100000, guid: a293a826ac334d941be835eaf15c3ceb, type: 2}
+  - {fileID: 2100000, guid: f0282366241845948a91a4ea49c8e0a7, type: 2}
+  - {fileID: 2100000, guid: 6a20cfefcc50cb849b2ca12f517084ff, type: 2}
+  - {fileID: 2100000, guid: c84dec2514c939a4780c5677379dd6a2, type: 2}
+  - {fileID: 2100000, guid: f8e102fcd187b704d84b645f51a1490e, type: 2}
+  - {fileID: 2100000, guid: e03d642bd9ce4ee448bacf643299737b, type: 2}
+  windows:
+  - {fileID: 2100000, guid: 2f50baf8adec0244eb31a430116e61d9, type: 2}
+  - {fileID: 2100000, guid: 536ef5b1e86a66846ac9b8b031d21559, type: 2}
+  - {fileID: 2100000, guid: d4d5bd123ade9db43b7f8c9c23937dd3, type: 2}
+  - {fileID: 2100000, guid: eaf1043ded074e740937c77f62e3342b, type: 2}
+  - {fileID: 2100000, guid: 4dde63882b2866b4fbd4ec4892b0312a, type: 2}
+  - {fileID: 2100000, guid: fca8f45f317353d498afe8d427be3d96, type: 2}
+  paints:
+  - {fileID: 2100000, guid: 0a91b66e0fd01374887a3e3fcd6b24de, type: 2}
+  - {fileID: 2100000, guid: 97eae317dc6b75d46a06d32cbb1e05ab, type: 2}
+  - {fileID: 2100000, guid: 2db82058077427e4aa779583aae1a1bf, type: 2}
+  - {fileID: 2100000, guid: 12f5d75604abbea47a95c9c372b8e776, type: 2}
+  - {fileID: 2100000, guid: db2a7345bbc414449b068877a9aa67d2, type: 2}
+  - {fileID: 2100000, guid: 38fd118b293755c4b8205d9920a333a0, type: 2}
+  - {fileID: 2100000, guid: 57b0f851ee6d27c4fac55aa6c50ea474, type: 2}
+  - {fileID: 2100000, guid: 6516e6a8733e88943b7fb549cbf1e52f, type: 2}
+  commands:
+  - {fileID: 383973107993941188, guid: e2c9e22f1f72c0d4881648d50c02a191, type: 3}
+  engines:
+  - {fileID: 7277010137082509955, guid: 6c37878981b8de1478b0fa584acea2ed, type: 3}
+  weapons:
+  - {fileID: 6388743259187010624, guid: 69c9ec7cde56df0448fa017e1e86e936, type: 3}
+  - {fileID: 7299998553140576445, guid: 61c9d8cdfa6e1be45a207b3d4d95a8eb, type: 3}
+  inners:
+  - {fileID: -7266218184336255269, guid: ebeff75a6171b1746bc9f2667fdd5ff9, type: 3}
+  - {fileID: 7373376039951353582, guid: cdc9ace95e8383442b6c66ba216415fb, type: 3}
+  thrusters:
+  - {fileID: 7373376039951353582, guid: cdc9ace95e8383442b6c66ba216415fb, type: 3}
+  stations: []
+  rocks:
+  - {fileID: 7895656694346835634, guid: fa1b7375f29a6d742aea4864d6d2d1c6, type: 3}
+  - {fileID: 2723797193404462205, guid: be21a6d6f56cc41439ebc379974a3884, type: 3}
+  - {fileID: 6136114273733975201, guid: 94d98ad300430304a96dbc70364d5065, type: 3}
+  - {fileID: 224785169637738538, guid: f4598c97f352f414ca53376b8f27d32f, type: 3}
+  - {fileID: 7185882976493813261, guid: cdd994454a35d474f86104846da99048, type: 3}
+  - {fileID: 7715660766977986239, guid: f14654503adac094ca282a1890f7c7f8, type: 3}
+  - {fileID: 1823170008669354998, guid: c81425ba97b014a43a58bf70fb627181, type: 3}
+  - {fileID: 1309430030879649833, guid: 59df718934d2158429bb3b68f4126c3f, type: 3}
+  - {fileID: 9077743712971050779, guid: f975b8f023901004a986ecc84b378627, type: 3}
+  - {fileID: 7953620530520810577, guid: 2fa84f1c36341494d82388a9f95eebc2, type: 3}
+  - {fileID: 6445172529912079685, guid: 4e1ba1ef0b5842e4d9def872a6e5c977, type: 3}
+  - {fileID: 6695373638070381763, guid: 8ef348f3d3a66a349b3298ba2f130635, type: 3}
+  - {fileID: 8497190437253095377, guid: 8e4d2e5752d1c8e4eb22ee709f96c9c2, type: 3}
+  - {fileID: 6536131261693907826, guid: 4bd795564bdace14397660edfe0d942e, type: 3}
+  - {fileID: 1505154393839356814, guid: 2de9ecd4d914ab64c9297d3e499b32a8, type: 3}
+  - {fileID: 7792178935423941351, guid: f840e56b62c006540ae5f13f17f520a7, type: 3}
+  areaLength: 1000
+  rockChance: 0.01
