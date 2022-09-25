@@ -99,3 +99,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   ship: {fileID: 0}
+  description: 

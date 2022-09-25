@@ -82,8 +82,8 @@ MonoBehaviour:
   - {fileID: 6388743259187010624, guid: 69c9ec7cde56df0448fa017e1e86e936, type: 3}
   - {fileID: 7299998553140576445, guid: 61c9d8cdfa6e1be45a207b3d4d95a8eb, type: 3}
   inners:
-  - {fileID: -1395389475422373217, guid: 35163322c82e90d4aacc66f9d9fd38ce, type: 3}
   - {fileID: 7373376039951353582, guid: cdc9ace95e8383442b6c66ba216415fb, type: 3}
+  - {fileID: -1395389475422373217, guid: 35163322c82e90d4aacc66f9d9fd38ce, type: 3}
   thrusters:
   - {fileID: 7373376039951353582, guid: cdc9ace95e8383442b6c66ba216415fb, type: 3}
   stations: []
@@ -111,3 +111,23 @@ MonoBehaviour:
   shipChance: 0.025
   ships: []
   missiles: []
+  hideOnPlay:
+  - {fileID: 0}
+  - {fileID: 0}
+  showOnPlay:
+  - {fileID: 0}
+  - {fileID: 0}
+  gameStarted: 0
+  listContents:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  clickable:
+    serializedVersion: 2
+    m_Bits: 512
+  compsGroup: {fileID: 0}
+  shipName: {fileID: 0}
+  partName: {fileID: 0}
+  partDescription: {fileID: 0}

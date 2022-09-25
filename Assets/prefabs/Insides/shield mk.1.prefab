@@ -198,6 +198,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   ship: {fileID: 0}
+  description: Basic shield, will block some damage before having to regenerate.
+  cost: 2
   maxShieldHitpoints: 5
   regenPerSecond: 1
   shield: {fileID: 461994006966893196}

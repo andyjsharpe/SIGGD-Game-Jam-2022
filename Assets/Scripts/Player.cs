@@ -5,7 +5,6 @@ using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
 
 public class Player : MonoBehaviour
 {
@@ -39,10 +38,11 @@ public class Player : MonoBehaviour
         transform.position = playerShip.transform.position;
         slotCamera.rotation = playerShip.transform.rotation;
         //set pirates count
-        TextMeshProUGUI.text = getPirateCount().ToString() + " PIRATES LEFT";
-        if (Input.GetKeyDown(KeyCode.Escape))
+        int pirates = getPirateCount();
+        TextMeshProUGUI.text = pirates.ToString() + " PIRATES LEFT";
+        if (pirates <= 0)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(2);
         }
         if (playerShip.health > 0)
         {

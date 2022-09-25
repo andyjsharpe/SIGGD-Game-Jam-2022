@@ -100,7 +100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   ship: {fileID: 0}
-  maxAmmo: 50
+  description: Manually aimed dumb-fire missile launcher.
+  cost: 1
   targetType: 0
   cooldownMax: 1
   maxRange: 100

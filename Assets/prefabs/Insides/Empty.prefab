@@ -41,11 +41,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7050885546885783811}
-  - component: {fileID: 6230198579850325670}
-  - component: {fileID: 8183862754056067692}
-  - component: {fileID: 7373376039951353582}
+  - component: {fileID: -8138120351758438401}
   m_Layer: 10
-  m_Name: thruster mk.1
+  m_Name: Empty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,58 +65,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &6230198579850325670
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7679226293478521785}
-  m_Mesh: {fileID: -462981019419857548, guid: b26a27648cca3c64eb36360f2eacecec, type: 3}
---- !u!23 &8183862754056067692
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7679226293478521785}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 4b38657bd852ca04d9a4647b43dcd9d4, type: 2}
-  - {fileID: 2100000, guid: 30a8b2b8527f86740b8c8de4d121ed74, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7373376039951353582
+--- !u!114 &-8138120351758438401
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,17 +74,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7679226293478521785}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a3d02fa57641c24386609116613c059, type: 3}
+  m_Script: {fileID: 11500000, guid: ca605f7a7505da84fa502ede79715595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
   ship: {fileID: 0}
-  description: Basic thruster, allowing for ship rotation and breaking.
-  cost: 1
-  maxThrust: 500
-  maxThrustSpin: 2000
-  thrustHolder: {fileID: 5328036179194579837}
-  thrustParticles: {fileID: 3966987462219340655}
+  description: Empty Part
+  cost: 0
 --- !u!1001 &6409598540648845478
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -280,12 +223,6 @@ PrefabInstance:
 --- !u!4 &3881099822812426591 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7867533806397055481, guid: c0a89e9a1403cad49a6653ceb7fcd63f,
-    type: 3}
-  m_PrefabInstance: {fileID: 6409598540648845478}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &3966987462219340655 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8070140461282462665, guid: c0a89e9a1403cad49a6653ceb7fcd63f,
     type: 3}
   m_PrefabInstance: {fileID: 6409598540648845478}
   m_PrefabAsset: {fileID: 0}

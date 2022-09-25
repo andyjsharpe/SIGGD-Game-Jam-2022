@@ -216,6 +216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   ship: {fileID: 0}
+  description: Basic engine, provides medium thrust.
   maxThrust: 2500
   engineParticles: {fileID: 9086565781936308856}
   engineAudio: {fileID: 4426044959240034266}

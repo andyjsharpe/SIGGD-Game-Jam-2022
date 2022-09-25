@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static Slot;
 
 public class Generator : MonoBehaviour
 {
@@ -62,13 +64,45 @@ public class Generator : MonoBehaviour
     private Image[] listContents;
     [SerializeField]
     private LayerMask clickable;
+    [SerializeField]
+    private TextMeshProUGUI compsGroup;
     private Component[] currentComps;
+    [SerializeField]
+    private TextMeshProUGUI shipName;
+    private Slot currentSlot;
+    [SerializeField]
+    private TextMeshProUGUI partName;
+    [SerializeField]
+    private TextMeshProUGUI partDescription;
+    [SerializeField]
+    private TextMeshProUGUI CostText;
+    private int points;
 
     // Start is called before the first frame update
     void Awake()
     {
+        int maxPoints = PlayerPrefs.GetInt("Points");
+        if (maxPoints == 0)
+        {
+            PlayerPrefs.SetInt("Points", 4);
+        }
+
         //Make the player's ship
         forPlayer = generatePlayerShip(shipNum);
+        string n = forPlayer.name;
+        shipName.text = n.Substring(0, n.Length - 7);
+        foreach (Image i in listContents)
+        {
+            i.transform.gameObject.SetActive(false);
+        }
+
+        int pointsUsed = 0;
+        foreach (Component comp in forPlayer.transform.GetComponentsInChildren<Component>())
+        {
+            pointsUsed += comp.cost;
+        }
+        points = PlayerPrefs.GetInt("Points") - pointsUsed;
+        CostText.text = "POINTS LEFT: " + points.ToString();
     }
 
     public void startLevel()
@@ -86,16 +120,44 @@ public class Generator : MonoBehaviour
         gameStarted = true;
     }
 
+    public void chooseSlot(int i)
+    {
+        Component oldComp = currentSlot.GetComponentInChildren<Component>();
+        foreach (Transform child in currentSlot.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        if (oldComp != null)
+        {
+            points += oldComp.cost;
+        }
+        if (points - currentComps[i].cost < 0 || currentComps[i].gameObject.name == "Empty")
+        {
+            CostText.text = "POINTS LEFT: " + points.ToString();
+            return;
+        }
+        points -= currentComps[i].cost;
+        CostText.text = "POINTS LEFT: " + points.ToString();
+        GameObject g = Instantiate(currentComps[i].gameObject, currentSlot.transform.position, transform.rotation * Quaternion.Euler(-90, 180, 0), currentSlot.transform);
+        currentSlot.markComponent(g, true);
+        g.GetComponent<Component>().ship = forPlayer;
+        partName.text = currentComps[i].gameObject.name.ToUpper();
+        partDescription.text = currentComps[i].description.ToUpper();
+    }
+
     public void setSlotType(Slot.slotType slotType)
     {
         if (slotType == Slot.slotType.engine)
         {
             currentComps = engines;
+            compsGroup.text = "ENGINES";
         } else if (slotType == Slot.slotType.weapon) {
             currentComps = weapons;
+            compsGroup.text = "WEAPONS";
         }
         else {
             currentComps = inners;
+            compsGroup.text = "MISC.";
         }
         for (int i = 0; i < listContents.Length; i++)
         {
@@ -105,7 +167,7 @@ public class Generator : MonoBehaviour
             } else
             {
                 listContents[i].transform.gameObject.SetActive(true);
-                listContents[i].GetComponentInChildren<TextMeshProUGUI>().text = currentComps[i].name.ToUpper();
+                listContents[i].GetComponentInChildren<TextMeshProUGUI>().text = (currentComps[i].name + " (cost" + currentComps[i].cost.ToString() + ")").ToUpper();
             }
         }
         
@@ -117,6 +179,22 @@ public class Generator : MonoBehaviour
         shipNum %= shipPrefabs.Length;
         Destroy(forPlayer.gameObject);
         forPlayer = generatePlayerShip(shipNum);
+        string n = forPlayer.name;
+        shipName.text = n.Substring(0, n.Length - 7);
+        compsGroup.text = "CHOOSE A SLOT";
+        foreach (Image i in listContents)
+        {
+            i.transform.gameObject.SetActive(false);
+        }
+        partName.text = "";
+        partDescription.text = "";
+        int pointsUsed = 0;
+        foreach (Component comp in forPlayer.transform.GetComponentsInChildren<Component>())
+        {
+            pointsUsed += comp.cost;
+        }
+        points = PlayerPrefs.GetInt("Points") - pointsUsed;
+        CostText.text = "POINTS LEFT: " + points.ToString();
     }
 
     public void generatePrevShip()
@@ -128,6 +206,20 @@ public class Generator : MonoBehaviour
         }
         Destroy(forPlayer.gameObject);
         forPlayer = generatePlayerShip(shipNum);
+        string n = forPlayer.name;
+        shipName.text = n.Substring(0, n.Length - 7);
+        compsGroup.text = "CHOOSE A SLOT";
+        foreach (Image i in listContents)
+        {
+            i.transform.gameObject.SetActive(false);
+        }
+        int pointsUsed = 0;
+        foreach (Component comp in forPlayer.transform.GetComponentsInChildren<Component>())
+        {
+            pointsUsed += comp.cost;
+        }
+        points = PlayerPrefs.GetInt("Points") - pointsUsed;
+        CostText.text = "POINTS LEFT: " + points.ToString();
     }
 
     public void recalcShips()
@@ -146,6 +238,7 @@ public class Generator : MonoBehaviour
             {
                 Slot slotHit = hit.collider.transform.GetComponent<Slot>();
                 setSlotType(slotHit.type);
+                currentSlot = slotHit;
             }
         } else
         {
@@ -155,10 +248,11 @@ public class Generator : MonoBehaviour
 
     private void generateLevel()
     {
+        int len = areaLength * PlayerPrefs.GetInt("Points") / 4;
         //Generate ships
-        for (int i = -areaLength / 2; i <= areaLength / 2; i += 50)
+        for (int i = -len / 2; i <= len / 2; i += 50)
         {
-            for (int j = -areaLength / 2; j <= areaLength / 2; j += 50)
+            for (int j = -len / 2; j <= len / 2; j += 50)
             {
                 if (Random.Range(0f, 1f) < shipChance)
                 {
@@ -170,9 +264,9 @@ public class Generator : MonoBehaviour
         ships = FindObjectsOfType<Ship>();
 
         //Generate rocks
-        for (int i = -areaLength / 2; i <= areaLength / 2; i++)
+        for (int i = -len / 2; i <= len / 2; i++)
         {
-            for (int j = -areaLength / 2; j <= areaLength / 2; j++)
+            for (int j = -len / 2; j <= len / 2; j++)
             {
                 if (Random.Range(0f, 1f) < rockChance)
                 {
@@ -182,9 +276,9 @@ public class Generator : MonoBehaviour
         }
 
         //Generate planes
-        for (int i = -areaLength / 2; i <= areaLength / 2; i += 200)
+        for (int i = -len / 2; i <= len / 2; i += 200)
         {
-            for (int j = -areaLength / 2; j <= areaLength / 2; j += 200)
+            for (int j = -len / 2; j <= len / 2; j += 200)
             {
                 Instantiate(minimapPlane, Vector3.right * i + Vector3.forward * j, Quaternion.identity);
             }

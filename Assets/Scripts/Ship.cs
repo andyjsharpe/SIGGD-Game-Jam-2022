@@ -22,7 +22,7 @@ public class Ship : MonoBehaviour
     private float wanderRange = 400;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         health = maxHealth;
         slots = GetComponentsInChildren<Slot>();
