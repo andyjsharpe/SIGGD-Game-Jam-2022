@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6324033717309440015}
   - component: {fileID: 7757115929660423754}
   - component: {fileID: 15981145818524724}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 7194067983351789352}
   - component: {fileID: 4914133075222414306}
   - component: {fileID: 7277010137082509955}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: engine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,8 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  maxHealth: 100
-  health: 0
+  ship: {fileID: 0}
   maxThrust: 2500
   engineParticles: {fileID: 9086565781936308856}
 --- !u!1001 &8995946162890335856
@@ -225,9 +224,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6087086734179219597}
     m_Modifications:
+    - target: {fileID: 1866692896978666, guid: a990e3ac1318b834488c784d851f42a9, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1947871717301538, guid: a990e3ac1318b834488c784d851f42a9, type: 3}
       propertyPath: m_Name
       value: FireBall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947871717301538, guid: a990e3ac1318b834488c784d851f42a9, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4209731392266258, guid: a990e3ac1318b834488c784d851f42a9, type: 3}
       propertyPath: m_RootOrder

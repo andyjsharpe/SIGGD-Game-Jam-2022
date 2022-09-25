@@ -10,7 +10,7 @@ public class Ship : MonoBehaviour
     private Component[] components;
     public bool isPlayer = false;
     public bool pirate;
-    private bool aggressive = false;
+    public bool aggressive = false;
     public Ship target;
     public Vector3 moveTarget = Vector3.zero;
     private float aggroDist = 200;
@@ -32,10 +32,19 @@ public class Ship : MonoBehaviour
         minimap = GetComponentInChildren<ShipMinimap>();
     }
 
+    public float healthRatio()
+    {
+        return Mathf.Max((float)health / (float)maxHealth, 0.5f);
+    }
+
     private void FixedUpdate()
     {
+        if (health <= 0)
+        {
+            return;
+        }
         //AI controll here
-        if (!isPlayer && health > 0)
+        if (!isPlayer)
         {
             //pirate code
             if (pirate)
@@ -69,7 +78,7 @@ public class Ship : MonoBehaviour
                 {
                     //if the pirate has a target
                     float distance = (target.transform.position - transform.position).magnitude;
-                    if (distance > aggroDist * 2)
+                    if (distance > aggroDist * 2 || target.health <= 0)
                     {
                         target = null;
                         return;
@@ -116,16 +125,6 @@ public class Ship : MonoBehaviour
         if (!forPlayer)
         {
             pirate = Random.Range(0, 2) == 0;
-            if (pirate)
-            {
-                minimap.setColor(3);
-            } else
-            {
-                minimap.setColor(1);
-            }
-        } else
-        {
-            minimap.setColor(0);
         }
         slots = GetComponentsInChildren<Slot>();
         rigid = GetComponent<Rigidbody>();
@@ -181,6 +180,23 @@ public class Ship : MonoBehaviour
             component.ship = this;
         }
         command = GetComponentInChildren<Command>();
+        //set colors
+        minimap.commandRend = command.transform.GetComponent<MeshRenderer>();
+        if (!forPlayer)
+        {
+            if (pirate)
+            {
+                minimap.setColor(3);
+            }
+            else
+            {
+                minimap.setColor(1);
+            }
+        }
+        else
+        {
+            minimap.setColor(0);
+        }
         return this;
     }
 
@@ -322,8 +338,16 @@ public class Ship : MonoBehaviour
         }
     }
 
-    public void damage(int damage)
+    public void damage(int damage, Ship originator)
     {
         health -= damage;
+        if (health < 0)
+        {
+            health = 0;
+            minimap.setColor(4);
+            generator.recalcShips();
+        }
+        target = originator;
+        aggressive = true;
     }
 }

@@ -11,7 +11,7 @@ public class Engine : Component
     //returns the thrust of this engine
     public void engineOn(Rigidbody rigid)
     {
-        rigid.AddForceAtPosition(-1 * Time.fixedDeltaTime * rigid.transform.forward * maxThrust * ship.health / ship.maxHealth, transform.position, ForceMode.Force);
+        rigid.AddForceAtPosition(-1 * Time.fixedDeltaTime * rigid.transform.forward * maxThrust * ship.healthRatio(), transform.position, ForceMode.Force);
         engineParticles.Play();
     }
 }

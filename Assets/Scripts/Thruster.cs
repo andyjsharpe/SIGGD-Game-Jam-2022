@@ -16,7 +16,7 @@ public class Thruster : Inner
     public void thrusterBack(Rigidbody rigid)
     {
         float maxVelMod = Mathf.Min(2, rigid.velocity.magnitude);
-        rigid.AddForceAtPosition(-1 * Time.fixedDeltaTime * rigid.velocity.normalized * maxVelMod * maxThrust * ship.health / ship.maxHealth, transform.position, ForceMode.Force);
+        rigid.AddForceAtPosition(-1 * Time.fixedDeltaTime * rigid.velocity.normalized * maxVelMod * maxThrust * ship.healthRatio(), transform.position, ForceMode.Force);
         thrustHolder.transform.rotation = Quaternion.LookRotation(-1 * rigid.velocity, Vector3.up);
         thrustParticles.Play();
     }
@@ -24,12 +24,16 @@ public class Thruster : Inner
     public void thrusterRotate(Rigidbody rigid, bool right)
     {
         //gives vector needed to turn ship
-        Vector3 forceDir = Vector3.Cross(rigid.position - (transform.position - Vector3.up), Vector3.up).normalized;
+        Vector3 forceDir = Vector3.Cross(rigid.position - (transform.position + Vector3.up * 1.5f), Vector3.up).normalized;
+        if (forceDir == Vector3.zero)
+        {
+            return;
+        }
         if (!right)
         {
             forceDir *= -1;
         }
-        rigid.AddForceAtPosition(Time.fixedDeltaTime * forceDir * maxThrustSpin * ship.health / ship.maxHealth, transform.position, ForceMode.Force);
+        rigid.AddForceAtPosition(Time.fixedDeltaTime * forceDir * maxThrustSpin * ship.healthRatio(), transform.position, ForceMode.Force);
         thrustHolder.transform.rotation = Quaternion.LookRotation(forceDir, Vector3.up);
         thrustParticles.Play();
     }

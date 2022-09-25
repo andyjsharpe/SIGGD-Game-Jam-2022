@@ -9,25 +9,35 @@ public class Projectile : MonoBehaviour
     public float recoilForce;
     [SerializeField]
     public int damage;
+    public Ship owner;
+    [SerializeField]
+    private GameObject spawnOnDestroy;
     
     // Start is called before the first frame update
     void Awake()
     {
         GetComponent<Rigidbody>().velocity = transform.forward * speed;
+        Destroy(gameObject, 60);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
         Ship ship;
         Destructable dest;
-        if (ship = collision.transform.GetComponent<Ship>())
+        if (ship = other.transform.GetComponent<Ship>())
         {
-            ship.damage(damage);
+            if (ship == owner)
+            {
+                return;
+            }
+            ship.damage(damage, owner);
+            Instantiate(spawnOnDestroy, transform.position, transform.rotation);
             Destroy(gameObject);
         }
-        else if (dest = collision.transform.GetComponent<Destructable>())
+        else if (dest = other.transform.GetComponent<Destructable>())
         {
             dest.damage(damage);
+            Instantiate(spawnOnDestroy, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6789550976531198900}
   - component: {fileID: 8781355074239367038}
   - component: {fileID: 7542595847908824822}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: InnerSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

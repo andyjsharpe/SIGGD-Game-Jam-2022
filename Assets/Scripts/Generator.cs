@@ -89,6 +89,11 @@ public class Generator : MonoBehaviour
         }
     }
 
+    public void recalcShips()
+    {
+        ships = FindObjectsOfType<Ship>();
+    }
+
     void FixedUpdate()
     {
         missiles = FindObjectsOfType<Missile>();
@@ -97,7 +102,7 @@ public class Generator : MonoBehaviour
     Ship generatePlayerShip()
     {
         GameObject g = Instantiate(shipPrefabs[Random.Range(0, shipPrefabs.Length)], Vector3.zero, Quaternion.Euler(0f, 180f, 0f));
-        return g.GetComponent<Ship>().generate(true, 0.5f, metals, windows, paints, commands, engines, weapons, inners, thrusters);
+        return g.GetComponent<Ship>().generate(true, 1, metals, windows, paints, commands, engines, weapons, inners, thrusters);
     }
 
     Ship generateShip(Vector3 position)

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2976673452200385773}
   - component: {fileID: 1057136390462875687}
   - component: {fileID: 6388743259187010624}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: missileLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,8 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
-  maxHealth: 100
-  health: 0
+  ship: {fileID: 0}
   maxAmmo: 50
   targetType: 0
   cooldownMax: 1
@@ -118,7 +117,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2465301294007747935}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,6 +210,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: missileTop
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cfc908344a1c8614590f74d9a921fb09,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfc908344a1c8614590f74d9a921fb09, type: 3}

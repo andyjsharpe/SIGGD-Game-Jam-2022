@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7517651232595315983}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SmokeRotator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 6230198579850325670}
   - component: {fileID: 8183862754056067692}
   - component: {fileID: 7373376039951353582}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: thruster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,8 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  maxHealth: 100
-  health: 100
+  ship: {fileID: 0}
   maxThrust: 500
   maxThrustSpin: 2000
   thrustHolder: {fileID: 5328036179194579837}
@@ -233,6 +232,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ThrusterSmoke
+      objectReference: {fileID: 0}
+    - target: {fileID: 7870778139171516811, guid: c0a89e9a1403cad49a6653ceb7fcd63f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8070140461282462665, guid: c0a89e9a1403cad49a6653ceb7fcd63f,
         type: 3}

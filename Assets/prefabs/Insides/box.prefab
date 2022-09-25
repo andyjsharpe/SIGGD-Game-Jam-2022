@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2091005672450299142}
   - component: {fileID: 4242472064460186060}
   - component: {fileID: -7266218184336255269}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,6 +97,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  maxHealth: 100
-  health: 0
+  ship: {fileID: 0}
   storageSize: 10

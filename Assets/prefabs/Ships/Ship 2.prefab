@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 2115069908458169605}
   - component: {fileID: 8823986466191201330}
   - component: {fileID: 4696482288917146445}
+  - component: {fileID: 3342420796942739484}
+  - component: {fileID: 7524131071386956284}
+  - component: {fileID: 1178846424301622946}
   m_Layer: 7
   m_Name: Ship 2
   m_TagString: Untagged
@@ -71,6 +74,48 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!136 &3342420796942739484
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115069908458169604}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.7
+  m_Height: 7.44
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &7524131071386956284
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115069908458169604}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.16
+  m_Height: 4.2
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: -2.82}
+--- !u!136 &1178846424301622946
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115069908458169604}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.74
+  m_Height: 4.25
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: 3.03}
 --- !u!1 &2115069909167144791
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,6 +376,13 @@ MonoBehaviour:
   - {fileID: 2100000, guid: e1141364b7deab54a9594c8b297cd20b, type: 2}
   - {fileID: 2100000, guid: bff3bad6cd8854b459f7fc6c256ace98, type: 2}
   - {fileID: 2100000, guid: 595916d13865fb4438125e16c06c0ada, type: 2}
+  doneMaterials:
+  - {fileID: 2100000, guid: 5bd9cedaa34f75d4482538abc09addde, type: 2}
+  - {fileID: 2100000, guid: dbea5fe9b62048b4c8cd1688676bc69a, type: 2}
+  - {fileID: 2100000, guid: d5730c1011459d8478fcb01196d1a6a6, type: 2}
+  - {fileID: 2100000, guid: 7609eafd951e4854eb45d267556b60a7, type: 2}
+  - {fileID: 2100000, guid: e2d8c6bf9fdf10446bcad0da89a93bc9, type: 2}
+  commandRend: {fileID: 0}
 --- !u!1001 &575248842121197407
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -717,6 +769,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Convex
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451118302482216456, guid: 0311191064465cb46b0d6db92adef750,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0311191064465cb46b0d6db92adef750, type: 3}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7496287942879227719}
   - component: {fileID: 5759221441497979789}
   - component: {fileID: 3839378028686438472}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: OutterSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,3 +96,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a52641b1d518834ab91414dbe91d9fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0

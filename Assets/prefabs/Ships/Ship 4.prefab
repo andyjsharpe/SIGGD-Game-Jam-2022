@@ -59,6 +59,9 @@ GameObject:
   - component: {fileID: 88322192482880960}
   - component: {fileID: 2218875158520888000}
   - component: {fileID: -491116441587698719}
+  - component: {fileID: 8493466504598924990}
+  - component: {fileID: 526649889934234142}
+  - component: {fileID: 3753304977103011881}
   m_Layer: 7
   m_Name: Ship 4
   m_TagString: Untagged
@@ -119,6 +122,46 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!136 &8493466504598924990
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88322192482881023}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.91
+  m_Height: 7.89
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &526649889934234142
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88322192482881023}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.47, y: 1.53, z: 3.53}
+  m_Center: {x: 2.68, y: -0.24, z: 1.28}
+--- !u!65 &3753304977103011881
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88322192482881023}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.47, y: 1.53, z: 3.53}
+  m_Center: {x: -2.68, y: -0.24, z: 1.28}
 --- !u!1 &2560537954565329902
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,6 +609,13 @@ MonoBehaviour:
   - {fileID: 2100000, guid: e1141364b7deab54a9594c8b297cd20b, type: 2}
   - {fileID: 2100000, guid: bff3bad6cd8854b459f7fc6c256ace98, type: 2}
   - {fileID: 2100000, guid: 595916d13865fb4438125e16c06c0ada, type: 2}
+  doneMaterials:
+  - {fileID: 2100000, guid: 5bd9cedaa34f75d4482538abc09addde, type: 2}
+  - {fileID: 2100000, guid: dbea5fe9b62048b4c8cd1688676bc69a, type: 2}
+  - {fileID: 2100000, guid: d5730c1011459d8478fcb01196d1a6a6, type: 2}
+  - {fileID: 2100000, guid: 7609eafd951e4854eb45d267556b60a7, type: 2}
+  - {fileID: 2100000, guid: e2d8c6bf9fdf10446bcad0da89a93bc9, type: 2}
+  commandRend: {fileID: 0}
 --- !u!1001 &88322192612809282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -657,6 +707,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Convex
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451118302482216456, guid: 621ff7cababa71f43b3acb0a1a3f45b7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 621ff7cababa71f43b3acb0a1a3f45b7, type: 3}
