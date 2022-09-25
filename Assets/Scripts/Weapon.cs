@@ -110,7 +110,7 @@ public class Weapon : Component
                             }
                         }
                     }
-                    if (closestDistance > maxRange)
+                    if (closestShipDistance > maxRange)
                     {
                         return;
                     }
@@ -128,6 +128,11 @@ public class Weapon : Component
                     //if not player, target the enemy ship if it exists
                     if (ship.target != null && ship.target.health > 0)
                     {
+                        if ((ship.target.transform.position - transform.position).magnitude > maxRange)
+                        {
+                            return;
+                        }
+                        
                         Vector3 shipVel = ship.target.GetComponent<Rigidbody>().velocity;
                         float impactTime = (ship.target.transform.position - transform.position).magnitude / shipVel.magnitude;
                         Vector3 direction = ((ship.target.transform.position - transform.position) / (impactTime / 2) + shipVel) / projectile.speed;
@@ -141,8 +146,9 @@ public class Weapon : Component
             else
             {
                 Vector3 missileVel = closestMissile.GetComponent<Rigidbody>().velocity;
-                float impactTime = (closestMissile.transform.position - transform.position).magnitude / missileVel.magnitude;
+                float impactTime = (closestMissile.transform.position - transform.position).magnitude / (missileVel - ship.rigid.velocity).magnitude;
                 Vector3 direction = ((closestMissile.transform.position - transform.position) / (impactTime / 2) + missileVel) / projectile.speed;
+                //remove a timestep to correct
                 lastTargetDir = direction;
                 direction.y = 0;
                 transform.localRotation = Quaternion.Euler(0f, 0f, Vector3.SignedAngle(transform.parent.right, direction, Vector3.up) + 90f);
@@ -163,6 +169,10 @@ public class Weapon : Component
         }
         if (targetType == wepType.manual || targetType == wepType.missiles)
         {
+            if (lastTargetDir == Vector3.zero)
+            {
+                return;
+            }
             GameObject g = Instantiate(projectile.gameObject, transform.position, Quaternion.LookRotation(lastTargetDir));
             g.GetComponent<Projectile>().player = isPlayer;
             g.GetComponent<Projectile>().owner = ship;

@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
         int i = 0;
         foreach (Ship s in generator.ships)
         {
-            if (s != null || s.pirate)
+            if (s == null || s.pirate)
             {
                 i++;
             }

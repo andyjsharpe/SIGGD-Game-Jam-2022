@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
-    private Rigidbody rigid;
+    public Rigidbody rigid;
     private Slot[] slots;
     public Command command;
     private Component[] components;
@@ -34,7 +34,8 @@ public class Ship : MonoBehaviour
 
     public float healthRatio()
     {
-        return Mathf.Max((float)health / (float)maxHealth, 0.5f);
+        //return Mathf.Max((float)health / (float)maxHealth, 0.5f);
+        return 1;
     }
 
     private void FixedUpdate()

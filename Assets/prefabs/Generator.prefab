@@ -82,7 +82,7 @@ MonoBehaviour:
   - {fileID: 6388743259187010624, guid: 69c9ec7cde56df0448fa017e1e86e936, type: 3}
   - {fileID: 7299998553140576445, guid: 61c9d8cdfa6e1be45a207b3d4d95a8eb, type: 3}
   inners:
-  - {fileID: -7266218184336255269, guid: ebeff75a6171b1746bc9f2667fdd5ff9, type: 3}
+  - {fileID: -1395389475422373217, guid: 35163322c82e90d4aacc66f9d9fd38ce, type: 3}
   - {fileID: 7373376039951353582, guid: cdc9ace95e8383442b6c66ba216415fb, type: 3}
   thrusters:
   - {fileID: 7373376039951353582, guid: cdc9ace95e8383442b6c66ba216415fb, type: 3}
@@ -104,5 +104,10 @@ MonoBehaviour:
   - {fileID: 6536131261693907826, guid: 4bd795564bdace14397660edfe0d942e, type: 3}
   - {fileID: 1505154393839356814, guid: 2de9ecd4d914ab64c9297d3e499b32a8, type: 3}
   - {fileID: 7792178935423941351, guid: f840e56b62c006540ae5f13f17f520a7, type: 3}
-  areaLength: 1000
-  rockChance: 0.01
+  minimapPlane: {fileID: 9193910394440066246, guid: a10ea489776b5614cac22d86a33b9c6b,
+    type: 3}
+  areaLength: 800
+  rockChance: 0.005
+  shipChance: 0.025
+  ships: []
+  missiles: []

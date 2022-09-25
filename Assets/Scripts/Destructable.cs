@@ -7,6 +7,8 @@ public class Destructable : MonoBehaviour
     public int maxHealth = 10;
     [HideInInspector]
     public int health = 10;
+    [SerializeField]
+    private GameObject createOnDestroy;
 
     private void Start()
     {
@@ -18,6 +20,7 @@ public class Destructable : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
+            Instantiate(createOnDestroy, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }

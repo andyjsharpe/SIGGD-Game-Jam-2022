@@ -24,6 +24,7 @@ public class Projectile : MonoBehaviour
     {
         Ship ship;
         Destructable dest;
+        ShieldGenerator SG;
         if (ship = other.transform.GetComponent<Ship>())
         {
             if (ship == owner)
@@ -37,6 +38,16 @@ public class Projectile : MonoBehaviour
         else if (dest = other.transform.GetComponent<Destructable>())
         {
             dest.damage(damage);
+            //Instantiate(spawnOnDestroy, transform.position, transform.rotation);
+            //Destroy(gameObject);
+        }
+        else if (SG = other.transform.GetComponent<ShieldGenerator>())
+        {
+            if (SG.ship == owner)
+            {
+                return;
+            }
+            SG.damage(damage);
             Instantiate(spawnOnDestroy, transform.position, transform.rotation);
             Destroy(gameObject);
         }
