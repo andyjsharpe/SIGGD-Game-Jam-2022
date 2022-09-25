@@ -30,6 +30,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (playerShip == null)
+        {
+            return;
+        }
         health.maxValue = playerShip.maxHealth;
         health.value = playerShip.health;
         transform.position = playerShip.transform.position;

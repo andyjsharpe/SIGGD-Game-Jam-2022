@@ -140,13 +140,13 @@ public class Ship : MonoBehaviour
             if (slot.type == Slot.slotType.command)
             {
                 GameObject g = Instantiate(commands[Random.Range(0, commands.Length)].gameObject, slot.transform.position, transform.rotation * Quaternion.Euler(-90, 180, 0), slot.transform);
-                slot.markComponent(g);
+                slot.markComponent(g, isPlayer);
             }
             //setup engines
             else if (slot.type == Slot.slotType.engine)
             {
                 GameObject g = Instantiate(engines[Random.Range(0, engines.Length)].gameObject, slot.transform.position, transform.rotation * Quaternion.Euler(-90, 180, 0), slot.transform);
-                slot.markComponent(g);
+                slot.markComponent(g, isPlayer);
             }
             //setup weapons
             else if (slot.type == Slot.slotType.weapon)
@@ -154,7 +154,7 @@ public class Ship : MonoBehaviour
                 if (!wep || Random.Range(0f, 1f) < fillChance)
                 {
                     GameObject g = Instantiate(weapons[Random.Range(0, weapons.Length)].gameObject, slot.transform.position, transform.rotation * Quaternion.Euler(-90, 180, 0), slot.transform);
-                    slot.markComponent(g);
+                    slot.markComponent(g, isPlayer);
                     g.GetComponent<Weapon>().isPlayer = isPlayer;
                     wep = true;
                 }
@@ -165,13 +165,90 @@ public class Ship : MonoBehaviour
                 if (!ins)
                 {
                     GameObject g = Instantiate(thrusters[Random.Range(0, thrusters.Length)].gameObject, slot.transform.position, transform.rotation * Quaternion.Euler(-90, 180, 0), slot.transform);
-                    slot.markComponent(g);
+                    slot.markComponent(g, isPlayer);
                     ins = true;
                 }   
                 else if (Random.Range(0f, 1f) < fillChance)
                 {
                     GameObject g = Instantiate(inners[Random.Range(0, inners.Length)].gameObject, slot.transform.position, transform.rotation * Quaternion.Euler(-90, 180, 0), slot.transform);
-                    slot.markComponent(g);
+                    slot.markComponent(g, isPlayer);
+                }
+            }
+        }
+        components = GetComponentsInChildren<Component>();
+        foreach (Component component in components)
+        {
+            component.ship = this;
+        }
+        command = GetComponentInChildren<Command>();
+        //set colors
+        minimap.commandRend = command.transform.GetComponent<MeshRenderer>();
+        if (!forPlayer)
+        {
+            if (pirate)
+            {
+                minimap.setColor(3);
+            }
+            else
+            {
+                minimap.setColor(1);
+            }
+        }
+        else
+        {
+            minimap.setColor(0);
+        }
+        return this;
+    }
+
+    public Ship customGenerate(bool forPlayer, Material[] metals, Material[] windows, Material[] paints, Command[] commands, Engine[] engines, Thruster[] thrusters, Weapon[] weapons)
+    {
+        ShipMinimap minimap = GetComponentInChildren<ShipMinimap>();
+        isPlayer = forPlayer;
+        if (!forPlayer)
+        {
+            pirate = Random.Range(0, 2) == 0;
+        }
+        slots = GetComponentsInChildren<Slot>();
+        rigid = GetComponent<Rigidbody>();
+        //setup materials
+        Material[] matSetup = { metals[Random.Range(0, metals.Length)], paints[Random.Range(0, paints.Length)], windows[Random.Range(0, windows.Length)] };
+        GetComponentInChildren<MeshRenderer>().materials = matSetup;
+        bool ins = false;
+        bool wep = false;
+        foreach (Slot slot in slots)
+        {
+            //setup command
+            if (slot.type == Slot.slotType.command)
+            {
+                GameObject g = Instantiate(commands[Random.Range(0, commands.Length)].gameObject, slot.transform.position, transform.rotation * Quaternion.Euler(-90, 180, 0), slot.transform);
+                slot.markComponent(g, isPlayer);
+            }
+            //setup engines
+            else if (slot.type == Slot.slotType.engine)
+            {
+                GameObject g = Instantiate(engines[Random.Range(0, engines.Length)].gameObject, slot.transform.position, transform.rotation * Quaternion.Euler(-90, 180, 0), slot.transform);
+                slot.markComponent(g, isPlayer);
+            }
+            //setup weapons
+            else if (slot.type == Slot.slotType.weapon)
+            {
+                if (!wep)
+                {
+                    GameObject g = Instantiate(weapons[Random.Range(0, weapons.Length)].gameObject, slot.transform.position, transform.rotation * Quaternion.Euler(-90, 180, 0), slot.transform);
+                    slot.markComponent(g, isPlayer);
+                    g.GetComponent<Weapon>().isPlayer = isPlayer;
+                    wep = true;
+                }
+            }
+            //setup inner
+            else
+            {
+                if (!ins)
+                {
+                    GameObject g = Instantiate(thrusters[Random.Range(0, thrusters.Length)].gameObject, slot.transform.position, transform.rotation * Quaternion.Euler(-90, 180, 0), slot.transform);
+                    slot.markComponent(g, isPlayer);
+                    ins = true;
                 }
             }
         }

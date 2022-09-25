@@ -63,7 +63,7 @@ GameObject:
   - component: {fileID: 526649889934234142}
   - component: {fileID: 3753304977103011881}
   m_Layer: 7
-  m_Name: Ship 4
+  m_Name: Forcemaker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,9 +99,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba22de2bd3a31b44ab8ddf6c256fa898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rigid: {fileID: 0}
   command: {fileID: 0}
   isPlayer: 0
   pirate: 0
+  aggressive: 0
   target: {fileID: 0}
   moveTarget: {x: 0, y: 0, z: 0}
   maxHealth: 70
@@ -1196,12 +1198,12 @@ PrefabInstance:
     - target: {fileID: 7608426085709216785, guid: 1c7d0d582b321664a8fbe7876575d333,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.00000035762787
       objectReference: {fileID: 0}
     - target: {fileID: 7608426085709216785, guid: 1c7d0d582b321664a8fbe7876575d333,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.75
+      value: 1.2500005
       objectReference: {fileID: 0}
     - target: {fileID: 7608426085709216785, guid: 1c7d0d582b321664a8fbe7876575d333,
         type: 3}
@@ -1496,12 +1498,12 @@ PrefabInstance:
     - target: {fileID: 7608426085709216785, guid: 1c7d0d582b321664a8fbe7876575d333,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.00000035762787
       objectReference: {fileID: 0}
     - target: {fileID: 7608426085709216785, guid: 1c7d0d582b321664a8fbe7876575d333,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.25
+      value: -1.7500005
       objectReference: {fileID: 0}
     - target: {fileID: 7608426085709216785, guid: 1c7d0d582b321664a8fbe7876575d333,
         type: 3}

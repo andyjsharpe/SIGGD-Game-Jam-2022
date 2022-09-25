@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 3696362202771600602}
   - component: {fileID: 7299998553140576445}
   m_Layer: 10
-  m_Name: pointDefense
+  m_Name: point Defense
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

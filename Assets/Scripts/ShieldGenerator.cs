@@ -33,6 +33,12 @@ public class ShieldGenerator : Inner
             {
                 shield.SetActive(true);
                 sCollider.enabled = true;
+                Vector3 dir = Vector3.Cross(transform.position - ship.transform.position, Vector3.up);
+                if (dir == Vector3.zero)
+                {
+                    dir = transform.up;
+                }
+                shield.transform.Rotate(dir, Time.fixedDeltaTime * 20);
             }
         }
     }

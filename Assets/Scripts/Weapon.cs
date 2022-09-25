@@ -26,19 +26,21 @@ public class Weapon : Component
 
     private void FixedUpdate()
     {
-        if (cooldown > 0)
-        {
-            cooldown -= Time.fixedDeltaTime * ship.healthRatio();
-        }
-    }
-
-    private void Update()
-    {
-        if (ship.health <= 0)
+        if (!generator.gameStarted)
         {
             return;
         }
         
+        if (ship.health <= 0)
+        {
+            return;
+        }
+
+        if (cooldown > 0)
+        {
+            cooldown -= Time.fixedDeltaTime * ship.healthRatio();
+        }
+
         // follow mouse
         if (targetType == wepType.manual)
         {
