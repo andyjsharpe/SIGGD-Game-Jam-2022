@@ -77,6 +77,7 @@ public class Generator : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI CostText;
     private int points;
+    private bool spawnedPirate = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -117,6 +118,7 @@ public class Generator : MonoBehaviour
         {
             g.SetActive(true);
         }
+        forPlayer.beforeStartSetup();
         gameStarted = true;
     }
 
@@ -138,9 +140,14 @@ public class Generator : MonoBehaviour
         }
         points -= currentComps[i].cost;
         CostText.text = "POINTS LEFT: " + points.ToString();
-        GameObject g = Instantiate(currentComps[i].gameObject, currentSlot.transform.position, transform.rotation * Quaternion.Euler(-90, 180, 0), currentSlot.transform);
+        GameObject g = Instantiate(currentComps[i].gameObject, currentSlot.transform.position, forPlayer.transform.rotation * Quaternion.Euler(-90, 180, 0), currentSlot.transform);
         currentSlot.markComponent(g, true);
-        g.GetComponent<Component>().ship = forPlayer;
+        Component newC = g.GetComponent<Component>();
+        newC.ship = forPlayer;
+        if (newC is Weapon)
+        {
+            g.GetComponent<Weapon>().isPlayer = true;
+        }
         partName.text = currentComps[i].gameObject.name.ToUpper();
         partDescription.text = currentComps[i].description.ToUpper();
     }
@@ -167,7 +174,7 @@ public class Generator : MonoBehaviour
             } else
             {
                 listContents[i].transform.gameObject.SetActive(true);
-                listContents[i].GetComponentInChildren<TextMeshProUGUI>().text = (currentComps[i].name + " (cost" + currentComps[i].cost.ToString() + ")").ToUpper();
+                listContents[i].GetComponentInChildren<TextMeshProUGUI>().text = (currentComps[i].name + " (cost " + currentComps[i].cost.ToString() + ")").ToUpper();
             }
         }
         
@@ -288,13 +295,34 @@ public class Generator : MonoBehaviour
     Ship generatePlayerShip(int i)
     {
         GameObject g = Instantiate(shipPrefabs[i], Vector3.zero, Quaternion.Euler(0f, 180f, 0f));
-        return g.GetComponent<Ship>().customGenerate(true, metals, windows, paints, commands, engines, thrusters, weapons);
+        Weapon[] w = new Weapon[weapons.Length - 1];
+        for (int c = 1; c < weapons.Length; c++)
+        {
+            w[c - 1] = weapons[c];
+        }
+        return g.GetComponent<Ship>().customGenerate(metals, windows, paints, commands, engines[0], thrusters[0], w);
     }
 
     Ship generateShip(Vector3 position)
     {
         GameObject g = Instantiate(shipPrefabs[Random.Range(0, shipPrefabs.Length)], position, Quaternion.Euler(0f, Random.Range(0f, 360f), 0f));
-        return g.GetComponent<Ship>().generate(false, 0.75f, metals, windows, paints, commands, engines, weapons, inners, thrusters);
+        Weapon[] w = new Weapon[weapons.Length - 1];
+        for (int c = 1; c < weapons.Length; c++)
+        {
+            w[c - 1] = weapons[c];
+        }
+        Inner[] i = new Inner[inners.Length - 1];
+        for (int c = 1; c < inners.Length; c++)
+        {
+            i[c - 1] = inners[c];
+        }
+        bool pir = Random.Range(0, 2) == 0;
+        if (!spawnedPirate)
+        {
+            pir = true;
+            spawnedPirate = true;
+        }
+        return g.GetComponent<Ship>().generate(false, pir, 0.5f, metals, windows, paints, commands, engines, w, i, thrusters);
     }
 
     void generateRock(Vector3 position)

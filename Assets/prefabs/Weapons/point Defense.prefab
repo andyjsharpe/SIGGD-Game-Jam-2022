@@ -135,8 +135,8 @@ MonoBehaviour:
     nearby enemies.
   cost: 1
   targetType: 2
-  cooldownMax: 0.1
-  maxRange: 50
+  cooldownMax: 0.2
+  maxRange: 30
   projectile: {fileID: 5916991672318009879, guid: 3140484d1f574844ebafec40652a1cfb,
     type: 3}
   projectileSpawnPos: {fileID: 2292662424402696610}

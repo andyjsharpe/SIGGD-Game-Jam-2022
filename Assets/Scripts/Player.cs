@@ -17,13 +17,14 @@ public class Player : MonoBehaviour
     private Generator generator;
     [SerializeField]
     private TextMeshProUGUI TextMeshProUGUI;
-    private bool victory = false;
-    private int origionalPirateCount;
+    [SerializeField]
+    private GameObject GameOverUI;
+    [SerializeField]
+    private TextMeshProUGUI endMessage;
 
     private void Start()
     {
         generator = FindObjectOfType<Generator>();
-        origionalPirateCount = getPirateCount();
     }
 
     // Update is called once per frame
@@ -32,6 +33,11 @@ public class Player : MonoBehaviour
         if (playerShip == null)
         {
             return;
+        }
+        if (playerShip.health <= 0)
+        {
+            GameOverUI.SetActive(true);
+            endMessage.text = "CONGRATULATIONS: YOU MADE IT TO LEVEL " + (PlayerPrefs.GetInt("Points") - 3).ToString();
         }
         health.maxValue = playerShip.maxHealth;
         health.value = playerShip.health;
@@ -74,7 +80,7 @@ public class Player : MonoBehaviour
         int i = 0;
         foreach (Ship s in generator.ships)
         {
-            if (s == null || s.pirate)
+            if (s != null && s.pirate && s.health > 0)
             {
                 i++;
             }

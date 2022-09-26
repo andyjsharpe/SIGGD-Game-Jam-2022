@@ -22,6 +22,10 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (owner == null)
+        {
+            return;
+        }
         Ship ship;
         Destructable dest;
         ShieldGenerator SG;

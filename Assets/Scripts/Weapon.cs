@@ -161,6 +161,10 @@ public class Weapon : Component
 
     public void shoot(Rigidbody rigid)
     {
+        if (gameObject.name == "Empty")
+        {
+            return;
+        }
         if (ship.health <= 0)
         {
             return;

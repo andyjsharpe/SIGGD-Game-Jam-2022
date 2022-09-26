@@ -19,7 +19,7 @@ public class Ship : MonoBehaviour
     public int maxHealth = 100;
     [HideInInspector]
     public int health = 100;
-    private float wanderRange = 400;
+    private float wanderRange = 100;
 
     // Start is called before the first frame update
     void Awake()
@@ -119,13 +119,13 @@ public class Ship : MonoBehaviour
     }
 
     //generates a new ship procedurally
-    public Ship generate(bool forPlayer, float fillChance, Material[] metals, Material[] windows, Material[] paints, Command[] commands, Engine[] engines, Weapon[] weapons, Inner[] inners, Thruster[] thrusters)
+    public Ship generate(bool forPlayer, bool pir, float fillChance, Material[] metals, Material[] windows, Material[] paints, Command[] commands, Engine[] engines, Weapon[] weapons, Inner[] inners, Thruster[] thrusters)
     {
         ShipMinimap minimap = GetComponentInChildren<ShipMinimap>();
         isPlayer = forPlayer;
         if (!forPlayer)
         {
-            pirate = Random.Range(0, 2) == 0;
+            pirate = pir;
         }
         slots = GetComponentsInChildren<Slot>();
         rigid = GetComponent<Rigidbody>();
@@ -201,14 +201,27 @@ public class Ship : MonoBehaviour
         return this;
     }
 
-    public Ship customGenerate(bool forPlayer, Material[] metals, Material[] windows, Material[] paints, Command[] commands, Engine[] engines, Thruster[] thrusters, Weapon[] weapons)
+    public void beforeStartSetup()
+    {
+        components = GetComponentsInChildren<Component>();
+        foreach (Component component in components)
+        {
+            component.ship = this;
+            if (component is Weapon)
+            {
+                ((Weapon)component).isPlayer = true;
+            }
+        }
+        command = GetComponentInChildren<Command>();
+        //set colors
+        minimap.commandRend = command.transform.GetComponent<MeshRenderer>();
+        minimap.setColor(0);
+    }
+
+    public Ship customGenerate(Material[] metals, Material[] windows, Material[] paints, Command[] commands, Engine engine, Thruster thruster, Weapon[] weapons)
     {
         ShipMinimap minimap = GetComponentInChildren<ShipMinimap>();
-        isPlayer = forPlayer;
-        if (!forPlayer)
-        {
-            pirate = Random.Range(0, 2) == 0;
-        }
+        isPlayer = true;
         slots = GetComponentsInChildren<Slot>();
         rigid = GetComponent<Rigidbody>();
         //setup materials
@@ -227,7 +240,7 @@ public class Ship : MonoBehaviour
             //setup engines
             else if (slot.type == Slot.slotType.engine)
             {
-                GameObject g = Instantiate(engines[Random.Range(0, engines.Length)].gameObject, slot.transform.position, transform.rotation * Quaternion.Euler(-90, 180, 0), slot.transform);
+                GameObject g = Instantiate(engine.gameObject, slot.transform.position, transform.rotation * Quaternion.Euler(-90, 180, 0), slot.transform);
                 slot.markComponent(g, isPlayer);
             }
             //setup weapons
@@ -246,7 +259,7 @@ public class Ship : MonoBehaviour
             {
                 if (!ins)
                 {
-                    GameObject g = Instantiate(thrusters[Random.Range(0, thrusters.Length)].gameObject, slot.transform.position, transform.rotation * Quaternion.Euler(-90, 180, 0), slot.transform);
+                    GameObject g = Instantiate(thruster.gameObject, slot.transform.position, transform.rotation * Quaternion.Euler(-90, 180, 0), slot.transform);
                     slot.markComponent(g, isPlayer);
                     ins = true;
                 }
@@ -256,25 +269,15 @@ public class Ship : MonoBehaviour
         foreach (Component component in components)
         {
             component.ship = this;
+            if (component is Weapon)
+            {
+                ((Weapon)component).isPlayer = true;
+            }
         }
         command = GetComponentInChildren<Command>();
         //set colors
         minimap.commandRend = command.transform.GetComponent<MeshRenderer>();
-        if (!forPlayer)
-        {
-            if (pirate)
-            {
-                minimap.setColor(3);
-            }
-            else
-            {
-                minimap.setColor(1);
-            }
-        }
-        else
-        {
-            minimap.setColor(0);
-        }
+        minimap.setColor(0);
         return this;
     }
 
@@ -299,8 +302,8 @@ public class Ship : MonoBehaviour
         if (moveTarget == Vector3.zero || (moveTarget - transform.position).magnitude < 20)
         {
             // if close to center, choose random location, otherwise go nearer to center
-            Vector2 randPos = Random.insideUnitCircle * wanderRange;
-            if (transform.position.magnitude > wanderRange * 4) {
+            Vector2 randPos = Random.insideUnitCircle * wanderRange * PlayerPrefs.GetInt("Points") / 4;
+            if (transform.position.magnitude > wanderRange * 4 * PlayerPrefs.GetInt("Points") / 4) {
                 moveTarget = transform.position + new Vector3(randPos.x, 0, randPos.y);
             } else
             {
